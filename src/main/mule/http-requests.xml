@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="b4d3e6be-9163-4ffa-930c-f65a21e040a4" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="ecde46ff-7a8d-4915-9959-b740cc202784" basePath="https://dummyjson.com/carts" >
+		<http:request-connection host="dummyjson.com" />
+	</http:request-config>
+	<http:request-config name="HTTP_Request_configuration1" doc:name="HTTP Request configuration" doc:id="eeb3a649-af34-4f95-8379-90fca8bcd8bc" >
+		<http:request-connection host="dummyjson.com" />
+	</http:request-config>
+	<flow name="http-requestsFlow" doc:id="8b0137d2-57d6-4f36-ad70-a2e9ad22fa89" >
+		<http:listener doc:name="Listener" doc:id="0cdea1c2-e256-4671-a7fa-c7c6c8cf2560" config-ref="HTTP_Listener_config" path="/carts"/>
+		<http:request method="GET" doc:name="Request" doc:id="ac06dd75-c8d9-417b-826c-4816acf857a2" config-ref="HTTP_Request_configuration1" path="/carts"/>
+		<logger level="INFO" doc:name="Logger" doc:id="ddc3b6cd-1d2f-4e4c-8edb-328b1d7d1dcd" />
+	</flow>
+</mule>
